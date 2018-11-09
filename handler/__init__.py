@@ -11,6 +11,15 @@ class BaseRequestHandler(tornado_web.RequestHandler):
 
 
 class Route:
+    routes = [
+        (web.StaticFileHandler, {'path': './'})
+    ]
+
     def __init__(self, url: str, proxy=False):
         self.url = url
         self.proxy = proxy
+
+    def __call__(self, handler):
+        url = '/_internal' + self.url if self.proxy else self.url
+        self.routes.append(url, handler)
+        return handler
