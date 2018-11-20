@@ -1,4 +1,4 @@
-from handler import BaseRequestHandler, Route
+from main.handler import BaseRequestHandler, Route
 
 
 @Route(r'/login')

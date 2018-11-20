@@ -1,9 +1,10 @@
 import os
-from tornado import web
-from tornado.options import define, options
-from tornado.ioloop import IOLoop
 
-from configuration import config
+from tornado import web
+from tornado.ioloop import IOLoop
+from tornado.options import define, options
+
+from main.configuration import config
 
 
 def define_options():
@@ -12,7 +13,7 @@ def define_options():
 
 
 def init_server():
-    from handler import Route
+    from main.handler import Route
     routes = Route.routes
     print(routes)
     web.Application(routes).listen(options.port)
@@ -42,7 +43,6 @@ def set_config_root():
     config.CONFIG_ROOT_PATH = os.path.join(config.APP_ROOT_PATH, 'config')
 
 
-
 def start_event_loop():
     IOLoop.current().start()
 
@@ -50,6 +50,6 @@ def start_event_loop():
 def start():
     define_options()
     set_config_root()
-    import_sub_modules('handler')
+    import_sub_modules('main')
     init_server()
     start_event_loop()

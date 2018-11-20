@@ -1,4 +1,4 @@
-from handler import Route, BaseRequestHandler
+from main.handler import Route, BaseRequestHandler
 
 
 @Route(r'/helloWorld')
