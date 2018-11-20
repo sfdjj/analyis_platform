@@ -19,5 +19,11 @@ class Route:
 
     def __call__(self, handler):
         # url = '/_internal' + self.url if self.proxy else self.url
-        self.routes.append((self.url, handler))
+        if self.is_enabled():
+            url = self.url
+            self.routes.append((url, handler))
         return handler
+
+    @staticmethod
+    def is_enabled():
+        return True
