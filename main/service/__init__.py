@@ -3,9 +3,8 @@
 from main.configuration import SessionSupporter, Session
 
 
-# class BaseService(SessionSupporter):
-#     def __init__(self, session: Session):
-#         if isinstance(session, BaseService):
-#             session = session.session
-#         super().__init__(session)
-#         self.logger = logging.getLogger(self.logger_name)
+class BaseService(SessionSupporter):
+    def __init__(self, session: Session):
+        if isinstance(session, BaseService):
+            session = session.session
+        super().__init__(session)

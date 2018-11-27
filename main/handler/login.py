@@ -1,10 +1,18 @@
-from main.handler import BaseRequestHandler, Route, JsonRequest, _deep_strip_str, loads
+from main.handler import BaseRequestHandler, Route, JsonRequest
 
 
 @Route(r'/login')
 class Login(BaseRequestHandler):
-    async def post(self, username):
-        self.write(username)
+    @JsonRequest({
+        "properties": {
+            "user_name": {"type": "string"},
+            "password": {"type": "string"}
+        },
+        "required": ["username", "password"],
+        "type": "object"
+    })
+    async def post(self):
+        data = self.json_data
 
 
 @Route(r'/register')
