@@ -11,8 +11,7 @@ class BaseModel(Model):
     initialize_event = Event()
 
 
-class AnalysisPaltformDb(metaclass=Singleton):
+class AnalysisPlatformDb(metaclass=Singleton):
     def __init__(self):
-        self.db = PooledMySQLDatabase(host='127.0.0.1',port=3306,user='root',password='123456',
-                                      database='analysis_platform',autocommit=False,threadlocals=True,
-                                      max_connection=100)
+        self.db = PooledMySQLDatabase(host='localhost',port=3306,user='root',password='123456',
+                                      database='analysis_platform',autocommit=False,threadlocals=True)

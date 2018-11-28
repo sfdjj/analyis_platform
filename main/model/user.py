@@ -1,15 +1,15 @@
 # Created by wenchao.jia on 2018/11/27.
 # Mail:wenchao.jia@qunar.com
-from peewee import PrimaryKeyField, TextField, Proxy
+from peewee import PrimaryKeyField, TextField, Proxy, MySQLDatabase, Model
 
-from main.model import BaseModel, AnalysisPaltformDb
+from main.model import BaseModel, AnalysisPlatformDb
 
 _DB_PROXY = Proxy()
 
 def init_db_proxy():
-    _DB_PROXY.initialize(AnalysisPaltformDb().db)
+    _DB_PROXY.initialize(AnalysisPlatformDb().db)
 
-class User(BaseModel):
+class User(Model):
     id = PrimaryKeyField()
 
     user_name = TextField()
@@ -19,5 +19,5 @@ class User(BaseModel):
     tel = TextField()
 
     class Meta:
-        db_table = 'user'
+        database = AnalysisPlatformDb().db
 
